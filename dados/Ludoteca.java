@@ -1,5 +1,4 @@
 package dados;
-
 import java.util.ArrayList;
 
 public class Ludoteca implements Iterador {
