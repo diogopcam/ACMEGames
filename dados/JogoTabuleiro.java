@@ -17,7 +17,7 @@ public class JogoTabuleiro extends Jogo {
 	}
 
 	public double calculaPrecoFinal(){
-		double valor = 10.0;
-		return valor;
+		double valorFinal = getPrecoBase() + ((1.0/100.0)*getPrecoBase());
+		return valorFinal;
 	}
 }

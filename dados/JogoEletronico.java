@@ -27,8 +27,19 @@ public class JogoEletronico extends Jogo{
 	}
 
 	public double calculaPrecoFinal(){
-		double valor = 10.0;
-		return valor;
+		double valorFinal = 0;
+		switch(this.categoria){
+			case ACT:
+				valorFinal = getPrecoBase() + ((10.0/100.0)*getPrecoBase());
+				return valorFinal;
+			case SIM:
+				valorFinal = getPrecoBase() + ((30.0/100.0)*getPrecoBase());
+				return valorFinal;
+			case STR:
+				valorFinal = getPrecoBase() + ((70.0/100.0)*getPrecoBase());
+				return valorFinal;
+		}
+		return valorFinal;
 	}
 
 	public void jogoEletToString(){
