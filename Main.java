@@ -19,7 +19,7 @@ public class Main {
 		System.out.println(ludoteca.verificaJogo(jogotres));
 		// System.out.println(ludoteca.addJogo(jogotres));
 
-     //	System.out.println(ludoteca.hasNext());
+        //	System.out.println(ludoteca.hasNext());
 		// ludoteca.addJogo(jogotres);
 		//ludoteca.verificaJogo(jogoum);
 		// ludoteca.verificaJogo(jogotres);
