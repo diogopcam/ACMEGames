@@ -15,9 +15,25 @@ public class Main {
 		// System.out.println(jogoum.getPrecoBase());
 		// System.out.println(jogoum.calculaPrecoFinal());
 
-		System.out.println(ludoteca.verificaJogo(jogoum));
-		System.out.println(ludoteca.verificaJogo(jogotres));
+		System.out.println(ludoteca.addJogo(jogoum));
+		ludoteca.apresentaErro(jogoum);
+		// System.out.println(ludoteca.getTamanho());
+		// //System.out.println(ludoteca.getTamanho());
 		// System.out.println(ludoteca.addJogo(jogotres));
+		// System.out.println(ludoteca.getTamanho());
+
+
+		// Object objeto = ludoteca.next();
+		// JogoEletronico objparajogo = (JogoEletronico) objeto;
+
+
+
+		//ludoteca.verificaJogo(jogoum);
+		// System.out.println(ludoteca.verificaJogo(jogodois));
+		//ludoteca.verificaJogo(jogotres);
+		//System.out.println(ludoteca.addJogo(jogotres));
+		//ludoteca.reset();
+
 
         //	System.out.println(ludoteca.hasNext());
 		// ludoteca.addJogo(jogotres);
