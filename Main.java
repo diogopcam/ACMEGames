@@ -9,18 +9,28 @@ public class Main {
 		Ludoteca ludoteca = new Ludoteca();
 
 		JogoEletronico jogoum = new JogoEletronico("God of War", 2000,900, "Playstation", Categoria.STR);
-		JogoTabuleiro jogodois = new JogoTabuleiro("Banco Imobiliario", 2000, 1345, 90);
-		JogoEletronico jogotres = new JogoEletronico("God of War", 2000,900, "Playstation", Categoria.STR);
+		JogoTabuleiro jogodois = new JogoTabuleiro("Tetris", 2000, 1345, 90);
+		JogoEletronico jogotres = new JogoEletronico("The Last of Us", 2000,900, "Playstation", Categoria.STR);
+		JogoTabuleiro jogoquat = new JogoTabuleiro("Domino", 2000, 1345, 90);
 		//System.out.println(jogoum.getCategoria().getNome());
 		// System.out.println(jogoum.getPrecoBase());
 		// System.out.println(jogoum.calculaPrecoFinal());
 
-		System.out.println(ludoteca.addJogo(jogoum));
-		ludoteca.apresentaErro(jogoum);
-		// System.out.println(ludoteca.getTamanho());
+		// ludoteca.addJogo(jogoum);
+		// ludoteca.addJogo(jogodois);
+		// ludoteca.addJogo(jogotres);
+		// ludoteca.addJogo(jogoquat);
+		//ludoteca.apresentaErro(jogoum);
+		// ludoteca.apresentaErro(jogoum);
+		// ludoteca.apresentaErro(jogodois);
+		// ludoteca.apresentaSucesso(jogoum);
+		// ludoteca.apresentaSucesso(jogodois);
 		// //System.out.println(ludoteca.getTamanho());
 		// System.out.println(ludoteca.addJogo(jogotres));
 		// System.out.println(ludoteca.getTamanho());
+
+		System.out.println(ludoteca.consultaPorAno(2010));
+		//ludoteca.jogosDoAnoToString(2010);
 
 
 		// Object objeto = ludoteca.next();
