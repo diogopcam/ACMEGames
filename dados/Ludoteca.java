@@ -6,24 +6,22 @@ public class Ludoteca implements Iterador {
 	private int contador;
 	private int tamanho;
 	private ArrayList<Jogo> listaJogos;
-	private ArrayList<JogoEletronico> listaJogosEletronicos;
-	private ArrayList<JogoTabuleiro> listaJogosTabuleiro;
 	private double precoFinalLudoteca;
 	
 	public Ludoteca(){
 		tamanho = 0;
 		contador = 0;
 		listaJogos = new ArrayList();
-		listaJogosEletronicos = new ArrayList();
-		listaJogosTabuleiro = new ArrayList();
+		//listaJogosEletronicos = new ArrayList();
+		//listaJogosTabuleiro = new ArrayList();
 	}
 
 	public void jogosIniciaisLudoteca(){
 		JogoEletronico jogoum = new JogoEletronico("Resident Evil", 2004, 200, "Playstation", Categoria.ACT);
 		JogoEletronico jogodois = new JogoEletronico("God of War", 2000,350, "Playstation", Categoria.ACT);
 		JogoEletronico jogotres = new JogoEletronico("The Last of Us", 2000,70, "Playstation", Categoria.STR);
-		JogoTabuleiro jogoquatro = new JogoTabuleiro("Damas", 2002, 100000, 20); 
-		JogoTabuleiro jogocinco = new JogoTabuleiro("Domino", 2001, 130, 90);
+		JogoTabuleiro jogoquatro = new JogoTabuleiro("Damas", 2002, 25, 20); 
+		JogoTabuleiro jogocinco = new JogoTabuleiro("Domino", 2001, 1234567, 90);
 		JogoTabuleiro jogoseis = new JogoTabuleiro("Quebra cabeça", 1000,  50000, 80);
 		listaJogos.add(jogoum);
 		listaJogos.add(jogodois);
@@ -109,6 +107,7 @@ public class Ludoteca implements Iterador {
 			Jogo jogo = (Jogo) next();
 			valorTotal += jogo.calculaPrecoFinal();
 		}
+		precoFinalLudoteca = valorTotal;
 		return valorTotal;
 	}
 
@@ -141,8 +140,9 @@ public class Ludoteca implements Iterador {
 		}
 	}
 	
-	public void preencheJogosEletronicos(){
-			reset();
+	public ArrayList<JogoEletronico> preencheJogosEletronicos(){
+		ArrayList<JogoEletronico> listaJogosEletronicos = new ArrayList<>();
+		reset();
 			while(hasNext() == true){
 				Jogo jogo = (Jogo) next();
 				if(jogo instanceof JogoEletronico){
@@ -150,9 +150,11 @@ public class Ludoteca implements Iterador {
 					listaJogosEletronicos.add(jogoE);
 				}
 			}
+			return listaJogosEletronicos;
 	}
 
-	public void preencheJogosTabuleiro(){
+	public ArrayList<JogoTabuleiro> preencheJogosTabuleiro(){
+		ArrayList<JogoTabuleiro> listaJogosTabuleiro = new ArrayList<>();
 			reset();
 			while(hasNext() == true){
 				Jogo jogo = (Jogo) next();
@@ -161,6 +163,7 @@ public class Ludoteca implements Iterador {
 					listaJogosTabuleiro.add(jogoT);
 				}
 			}
+			return listaJogosTabuleiro;
 	}
 
 	public void consultaJogosCat(String c){
@@ -174,12 +177,11 @@ public class Ludoteca implements Iterador {
 	    } else{
 			apresentaJogosCategoria(c);
 		}
-
 	}
 	
 	public void apresentaJogosCategoria(String c){
 		boolean categoriaVer = false;
-		for(JogoEletronico jogo: listaJogosEletronicos){
+		for(JogoEletronico jogo: preencheJogosEletronicos()){
 			if(jogo.getCategoria().getNome().equalsIgnoreCase(c)){
 				System.out.println("5:"+jogo.getNome()+","+jogo.getAno()+","+jogo.getPrecoBase()+","+jogo.getPlataforma()+","+jogo.getCategoria()+","+jogo.calculaPrecoFinal());
 				categoriaVer = true;
@@ -228,7 +230,7 @@ public class Ludoteca implements Iterador {
 		JogoTabuleiro jogoMaisCaro = null;
         double maior = 0;
         
-        for (JogoTabuleiro jogoT : listaJogosTabuleiro) {
+        for (JogoTabuleiro jogoT : preencheJogosTabuleiro()) {
             double precoFinal = jogoT.calculaPrecoFinal();
             if (precoFinal > maior) {
                 maior = precoFinal; 

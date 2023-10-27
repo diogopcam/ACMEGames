@@ -37,15 +37,14 @@ public class ACMEGames {
 
 		//Quinto passo: Mostrar os dados de jogos de determinada categoria
 		//(optei por construir o metodo utilizando o tipo String, utilizando o atributo nome do enum Categoria)
-		ludoteca.preencheJogosEletronicos();
 		//aconselhavel alterar esse método, para que n seja necessario invocar um método para prencher o array sempre que um objeto for instanciado
-		ludoteca.consultaJogosCat("terror");
+		ludoteca.consultaJogosCat("acao");
 
 		//Sexto passo: Mostrar o somatório de preço de todos os jogos
 		ludoteca.mostraSomatorio();
 
 		//Sétimo passo: mostrar os dados do jogo de tabuleiro com maior preço final
-		ludoteca.preencheJogosTabuleiro();
+		//ludoteca.preencheJogosTabuleiro();
 		ludoteca.maiorPrecoFinal();
 	}
 }
