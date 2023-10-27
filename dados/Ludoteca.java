@@ -101,7 +101,7 @@ public class Ludoteca implements Iterador {
 				analise = true;
 				if(jogo instanceof JogoEletronico){
 					JogoEletronico jogoE = (JogoEletronico) jogo; 
-					System.out.println("3:"+jogoE.getNome()+","+jogoE.getAno()+","+jogoE.getPrecoBase()+","+jogoE.getPlataforma()+","+jogoE.getCategoria()+","+jogoE.calculaPrecoFinal());
+					System.out.println("3:"+jogoE.getNome()+","+jogoE.getAno()+","+jogoE.getPrecoBase()+","+jogoE.getPlataforma()+","+jogoE.getCategoria().getNome()+","+jogoE.calculaPrecoFinal());
 				} else if(jogo instanceof JogoTabuleiro){
 					JogoTabuleiro jogoT = (JogoTabuleiro) jogo;
 					System.out.println("3:"+jogoT.getNome()+","+jogoT.getAno()+","+jogoT.getPrecoBase()+","+jogoT.getNumeroPecas()+","+jogoT.calculaPrecoFinal());
@@ -109,7 +109,7 @@ public class Ludoteca implements Iterador {
 			}
 		}
 		if (!analise){
-			System.out.println("3:Nome inexistente");
+			System.out.println("3:Nome inexistente.");
 		}
 	}
 

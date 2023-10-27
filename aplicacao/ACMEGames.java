@@ -61,6 +61,22 @@ public class ACMEGames {
 				ludoteca.addJogo(jogoAnalisado);
 		}
 
+		while(entradaSaida.entrada.hasNextLine()){
+				String linha = entradaSaida.entrada.nextLine();
+				if(linha.equals("-1")){
+					System.out.println("Saiu do loop porque digitei -1!"); 
+					break;
+				}
+				//String[] camposSeparados = linha.split(";");
+				//String nome = camposSeparados[0];
+				//int ano = Integer.parseInt(camposSeparados[1]);
+				//double preco = Double.parseDouble(camposSeparados[2]);
+				//int numeroPecas = Integer.parseInt(camposSeparados[3]);
+				ludoteca.consultaPorNome(linha);
+		}
+
+
+
 		// // 	//Segundo passo: Cadastrar um jogo de tabuleiro
 		// // //JogoTabuleiro jogoTabExemplo = new JogoTabuleiro("Monopoly", 2000, 150, 60);
 		// // //ludoteca.addJogo(jogoTabExemplo);
