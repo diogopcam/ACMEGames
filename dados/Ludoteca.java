@@ -254,7 +254,7 @@ public class Ludoteca implements Iterador {
         } 
 
         if (jogoMaisCaro != null) {
-            System.out.println("7:" + jogoMaisCaro.getNome() + "," + jogoMaisCaro.calculaPrecoFinal());
+            System.out.println("7:" + jogoMaisCaro.getNome() + ",R$ " + jogoMaisCaro.calculaPrecoFinal());
         } else {
             System.out.println("7:Nenhum jogo encontrado.");
         }
