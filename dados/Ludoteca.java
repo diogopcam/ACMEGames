@@ -4,13 +4,18 @@ import java.util.Iterator;
 
 public class Ludoteca implements Iterador {
 	private int contador;
-	int tamanho;
+	private int tamanho;
 	private ArrayList<Jogo> listaJogos;
+	private ArrayList<JogoEletronico> listaJogosEletronicos;
+	private ArrayList<JogoTabuleiro> listaJogosTabuleiro;
+	private double precoFinalLudoteca;
 	
 	public Ludoteca(){
 		tamanho = 0;
 		contador = 0;
 		listaJogos = new ArrayList();
+		listaJogosEletronicos = new ArrayList();
+		listaJogosTabuleiro = new ArrayList();
 	}
 
 	public boolean addJogo(Jogo jogo){
@@ -82,7 +87,6 @@ public class Ludoteca implements Iterador {
 		return valorTotal;
 	}
 
-	//
 	public ArrayList<Jogo> consultaPorAno(int ano) {
 		ArrayList<Jogo> jogosDoAno = new ArrayList<>();
 		reset();
@@ -94,7 +98,7 @@ public class Ludoteca implements Iterador {
          }
 		 if(jogosDoAno.size() < 1) return null;
 		 return jogosDoAno;
-		}
+	}
 
     public void jogosDoAnoToString(int ano){
 		if(consultaPorAno(ano) == null){
@@ -111,7 +115,57 @@ public class Ludoteca implements Iterador {
 			}
 		}
 	}
+	
+	public void preencheJogosEletronicos(){
+			reset();
+			while(hasNext() == true){
+				Jogo jogo = (Jogo) next();
+				if(jogo instanceof JogoEletronico){
+					JogoEletronico jogoE = (JogoEletronico) jogo;
+					listaJogosEletronicos.add(jogoE);
+				}
+			}
+	}
 
+	public void preencheJogosTabuleiro(){
+			reset();
+			while(hasNext() == true){
+				Jogo jogo = (Jogo) next();
+				if(jogo instanceof JogoTabuleiro){
+					JogoTabuleiro jogoT = (JogoTabuleiro) jogo;
+					listaJogosTabuleiro.add(jogoT);
+				}
+			}
+	}
+
+	public void consultaJogosCat(String c){
+	ArrayList<JogoEletronico> jogosDaCategoria = new ArrayList<>();
+		String nomeAct = Categoria.ACT.getNome();
+		String nomeStr = Categoria.STR.getNome();
+		String nomeSim = Categoria.SIM.getNome();
+
+		if((!c.equals(nomeAct) && !c.equals(nomeStr)) && !c.equals(nomeSim)){
+			System.out.println("5:Categoria inexistente");
+			return;		
+	    } else{
+			apresentaJogosCategoria(c);
+		}
+
+	}
+	
+	public void apresentaJogosCategoria(String c){
+		boolean categoriaVer = false;
+		for(JogoEletronico jogo: listaJogosEletronicos){
+			if(jogo.getCategoria().getNome().equals(c)){
+				System.out.println("5:"+jogo.getNome()+","+jogo.getAno()+","+jogo.getPrecoBase()+","+jogo.getPlataforma()+","+jogo.getCategoria()+","+jogo.calculaPrecoFinal());
+				categoriaVer = true;
+			} 
+		}
+
+		if(!categoriaVer){
+			System.out.println("5:Não existe jogo com essa categoria");
+		}
+	}
 
 	public boolean verificaJogo(Jogo jogochave){
 		if(listaJogos.size()<1) return true;
@@ -145,5 +199,54 @@ public class Ludoteca implements Iterador {
 	public int getTamanho() {
 		return tamanho;
 	}
+
+	public void mostraSomatorio(){
+		// boolean verificacao;
+		double somatorio = 0;
+		if(listaJogos.size()<1){
+			System.out.println("6:Nenhum jogo encontrado.");
+			// verificacao = false;
+		} else{
+			for (Jogo jogo : listaJogos) {
+				double valorJogo = jogo.calculaPrecoFinal();
+				somatorio += valorJogo;
+			}
+			System.out.println("6:" + somatorio);
+		}
+	}
+
+	public void maiorPrecoFinal(){
+		JogoTabuleiro jogoMaisCaro = null;
+        double maior = 0;
+        
+        for (JogoTabuleiro jogoT : listaJogosTabuleiro) {
+            double precoFinal = jogoT.calculaPrecoFinal();
+            if (precoFinal > maior) {
+                maior = precoFinal; 
+                jogoMaisCaro = jogoT; 
+            }
+        } 
+		//return jogoMaisCaro;
+
+        if (jogoMaisCaro != null) {
+            System.out.println("7:" + jogoMaisCaro.getNome() + "," + jogoMaisCaro.calculaPrecoFinal());
+        } else {
+            System.out.println("7:Nenhum jogo encontrado.");
+        }
+    }
 }
+
+// Mostrar os dados do jogo de tabuleiro com maior preço final: localiza o jogo
+// de tabuleiro cadastrado com maior preço final. Se não existir nenhum jogo de
+// tabuleiro cadastrado, mostra a mensagem de erro: 7:Nenhum jogo
+// encontrado.
+// Se existir, mostra os dados do jogo no formato: 7:nome,preço final
+
+// Mostrar o somatório de preço final de todos os jogos: calcula o somatório do
+// preço final de todos os jogos do sistema. Se não existir jogo cadastrado no sistema,
+// mostra a mensagem de erro: 6:Nenhum jogo encontrado.
+
+
+
+
 
