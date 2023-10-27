@@ -19,13 +19,9 @@ public class ACMEGames {
 
 	public void executa() {
 		ludoteca.jogosIniciaisLudoteca();
-		//Primeiro passo: Cadastrar um jogo eletrônico 
-		// JogoEletronico jogoEletExemplo = new JogoEletronico("Devil May Cry", 2004, 150, "Playstation", Categoria.ACT);
-		// System.out.println(jogoEletExemplo.calculaPrecoFinal());
-		// ludoteca.addJogo(jogoEletExemplo);
 		
+		//Primeiro passo: Cadastrar um jogo eletrônico 
 		if(entradaSaida.entrada != null){
-			//System.out.println("menos mal;");
 			while(entradaSaida.entrada.hasNextLine()){
 				String linha = entradaSaida.entrada.nextLine();
 				if(linha.equals("-1")){
@@ -44,6 +40,7 @@ public class ACMEGames {
 				ludoteca.addJogo(jogoAnalisado);
 			}
 
+		//Segundo passo: Cadastrar um jogo de tabuleiro
 			while(entradaSaida.entrada.hasNextLine()){
 				String linha = entradaSaida.entrada.nextLine();
 				if(linha.equals("-1")){
@@ -61,31 +58,31 @@ public class ACMEGames {
 				ludoteca.addJogo(jogoAnalisado);
 		}
 
+        //Terceiro passo: Verificar se existe um jogo pelo nome
+			while(entradaSaida.entrada.hasNextLine()){
+				String linha = entradaSaida.entrada.nextLine();
+				if(linha.equals("-1")){
+					System.out.println("Saiu do loop porque digitei -1!"); 
+					break;
+				}
+				ludoteca.consultaPorNome(linha);
+		}
+
+		//Quarto passo: Verificar se existem jogos de determinado ano
 		while(entradaSaida.entrada.hasNextLine()){
 				String linha = entradaSaida.entrada.nextLine();
 				if(linha.equals("-1")){
 					System.out.println("Saiu do loop porque digitei -1!"); 
 					break;
 				}
-				//String[] camposSeparados = linha.split(";");
-				//String nome = camposSeparados[0];
-				//int ano = Integer.parseInt(camposSeparados[1]);
-				//double preco = Double.parseDouble(camposSeparados[2]);
-				//int numeroPecas = Integer.parseInt(camposSeparados[3]);
-				ludoteca.consultaPorNome(linha);
+				int anoDesejado = Integer.parseInt(linha);
+				ludoteca.jogosDoAnoToString(anoDesejado);
 		}
 
 
 
-		// // 	//Segundo passo: Cadastrar um jogo de tabuleiro
-		// // //JogoTabuleiro jogoTabExemplo = new JogoTabuleiro("Monopoly", 2000, 150, 60);
-		// // //ludoteca.addJogo(jogoTabExemplo);
 
-		// // //Terceiro passo: Verificar se existe um jogo pelo nome
-		// // ludoteca.consultaPorNome("the last of us");
-		// // ludoteca.consultaPorNome("god of war");
 
-		// // //Quarto passo: Verificar se existem jogos de determinado ano
 		// // ludoteca.jogosDoAnoToString(2002);
 
 		// // //Quinto passo: Mostrar os dados de jogos de determinada categoria

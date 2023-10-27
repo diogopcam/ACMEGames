@@ -139,12 +139,12 @@ public class Ludoteca implements Iterador {
 
     public void jogosDoAnoToString(int ano){
 		if(consultaPorAno(ano) == null){
-			System.out.println("4:Nenhum jogo encontrado");
+			System.out.println("4:Nenhum jogo encontrado.");
 		} else{
 			for(Jogo jogo: consultaPorAno(ano)){
 				if(jogo instanceof JogoEletronico){
 					JogoEletronico jogoE = (JogoEletronico) jogo; 
-					System.out.println("4:"+jogoE.getNome()+","+jogoE.getAno()+","+jogoE.getPrecoBase()+","+jogoE.getPlataforma()+","+jogoE.getCategoria()+","+jogoE.calculaPrecoFinal());
+					System.out.println("4:"+jogoE.getNome()+","+jogoE.getAno()+","+jogoE.getPrecoBase()+","+jogoE.getPlataforma()+","+jogoE.getCategoria().getNome()+","+jogoE.calculaPrecoFinal());
 				} else if(jogo instanceof JogoTabuleiro){
 					JogoTabuleiro jogoT = (JogoTabuleiro) jogo;
 					System.out.println("4:"+jogoT.getNome()+","+jogoT.getAno()+","+jogoT.getPrecoBase()+","+jogoT.getNumeroPecas()+","+jogoT.calculaPrecoFinal());
