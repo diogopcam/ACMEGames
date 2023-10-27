@@ -22,8 +22,8 @@ public class Ludoteca implements Iterador {
 		JogoEletronico jogoum = new JogoEletronico("Resident Evil", 2004, 200, "Playstation", Categoria.ACT);
 		JogoEletronico jogodois = new JogoEletronico("God of War", 2000,350, "Playstation", Categoria.ACT);
 		JogoEletronico jogotres = new JogoEletronico("The Last of Us", 2000,70, "Playstation", Categoria.STR);
-		JogoTabuleiro jogoquatro = new JogoTabuleiro("Damas", 2002, 200, 20); 
-		JogoTabuleiro jogocinco = new JogoTabuleiro("Domino", 2001, 21000, 90);
+		JogoTabuleiro jogoquatro = new JogoTabuleiro("Damas", 2002, 100000, 20); 
+		JogoTabuleiro jogocinco = new JogoTabuleiro("Domino", 2001, 130, 90);
 		JogoTabuleiro jogoseis = new JogoTabuleiro("Quebra cabeça", 1000,  50000, 80);
 		listaJogos.add(jogoum);
 		listaJogos.add(jogodois);
