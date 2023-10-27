@@ -28,7 +28,17 @@ public class ACMEGames {
 		ludoteca.addJogo(jogoTabExemplo);
 
 		//Terceiro passo: Verificar se existe um jogo pelo nome
-		ludoteca.consultaPorNome("Minecraft");
+		ludoteca.consultaPorNome("the last of us");
+		ludoteca.consultaPorNome("god of war");
+
+		//Quarto passo: Verificar se existem jogos de determinado ano
+		ludoteca.jogosDoAnoToString(2002);
+
+		//Quinto passo: Mostrar os dados de jogos de determinada categoria
+		//(optei por construir o metodo utilizando o tipo String, utilizando o atributo nome do enum Categoria)
+		ludoteca.preencheJogosEletronicos();
+		//aconselhavel alterar esse método, para que n seja necessario invocar um método para prencher o array sempre que um objeto for instanciado
+		ludoteca.consultaJogosCat("terror");
 	}
 }
 

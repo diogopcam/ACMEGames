@@ -22,8 +22,8 @@ public class Ludoteca implements Iterador {
 		JogoEletronico jogoum = new JogoEletronico("Resident Evil", 2004, 200, "Playstation", Categoria.ACT);
 		JogoEletronico jogodois = new JogoEletronico("God of War", 2000,350, "Playstation", Categoria.ACT);
 		JogoEletronico jogotres = new JogoEletronico("The Last of Us", 2000,70, "Playstation", Categoria.STR);
-		JogoTabuleiro jogoquatro = new JogoTabuleiro("Damas", 2000, 200, 20); 
-		JogoTabuleiro jogocinco = new JogoTabuleiro("Domino", 2000, 21000, 90);
+		JogoTabuleiro jogoquatro = new JogoTabuleiro("Damas", 2002, 200, 20); 
+		JogoTabuleiro jogocinco = new JogoTabuleiro("Domino", 2001, 21000, 90);
 		JogoTabuleiro jogoseis = new JogoTabuleiro("Quebra cabeça", 1000,  50000, 80);
 		listaJogos.add(jogoum);
 		listaJogos.add(jogodois);
@@ -48,7 +48,7 @@ public class Ludoteca implements Iterador {
 		reset();
 		while(hasNext() == true){
 			Jogo jogo = (Jogo) next();
-			if(jogo.getNome().equals(jogochave.getNome())){
+			if(jogo.getNome().equalsIgnoreCase(jogochave.getNome())){
 				return false;
 			}
 		}
@@ -79,7 +79,6 @@ public class Ludoteca implements Iterador {
 		}
 	}
 	
-
 	public void consultaPorNome(String nome){
 		reset();
 		boolean analise = false;
@@ -87,9 +86,8 @@ public class Ludoteca implements Iterador {
 		while(hasNext() == true){
 			Jogo jogo = (Jogo) next();
 			
-			if(jogo.getNome().equals(nome)){
+			if(jogo.getNome().equalsIgnoreCase(nome)){
 				analise = true;
-				
 				if(jogo instanceof JogoEletronico){
 					JogoEletronico jogoE = (JogoEletronico) jogo; 
 					System.out.println("3:"+jogoE.getNome()+","+jogoE.getAno()+","+jogoE.getPrecoBase()+","+jogoE.getPlataforma()+","+jogoE.getCategoria()+","+jogoE.calculaPrecoFinal());
@@ -99,7 +97,6 @@ public class Ludoteca implements Iterador {
 				}
 			}
 		}
-
 		if (!analise){
 			System.out.println("3:Nome inexistente");
 		}
@@ -122,10 +119,10 @@ public class Ludoteca implements Iterador {
 			Jogo jogo = (Jogo) next();
 			if(jogo.getAno() == ano){
 				jogosDoAno.add(jogo);
-	       }
-         }
-		 if(jogosDoAno.size() < 1) return null;
-		 return jogosDoAno;
+			}
+		}
+		if(jogosDoAno.size() < 1) return null;
+		return jogosDoAno;
 	}
 
     public void jogosDoAnoToString(int ano){
@@ -171,7 +168,7 @@ public class Ludoteca implements Iterador {
 		String nomeStr = Categoria.STR.getNome();
 		String nomeSim = Categoria.SIM.getNome();
 
-		if((!c.equals(nomeAct) && !c.equals(nomeStr)) && !c.equals(nomeSim)){
+		if((!c.equalsIgnoreCase(nomeAct) && !c.equalsIgnoreCase(nomeStr)) && !c.equalsIgnoreCase(nomeSim)){
 			System.out.println("5:Categoria inexistente");
 			return;		
 	    } else{
@@ -183,12 +180,11 @@ public class Ludoteca implements Iterador {
 	public void apresentaJogosCategoria(String c){
 		boolean categoriaVer = false;
 		for(JogoEletronico jogo: listaJogosEletronicos){
-			if(jogo.getCategoria().getNome().equals(c)){
+			if(jogo.getCategoria().getNome().equalsIgnoreCase(c)){
 				System.out.println("5:"+jogo.getNome()+","+jogo.getAno()+","+jogo.getPrecoBase()+","+jogo.getPlataforma()+","+jogo.getCategoria()+","+jogo.calculaPrecoFinal());
 				categoriaVer = true;
 			} 
 		}
-
 		if(!categoriaVer){
 			System.out.println("5:Não existe jogo com essa categoria");
 		}
