@@ -18,14 +18,41 @@ public class Ludoteca implements Iterador {
 		listaJogosTabuleiro = new ArrayList();
 	}
 
+	public void jogosIniciaisLudoteca(){
+		JogoEletronico jogoum = new JogoEletronico("Resident Evil", 2004, 200, "Playstation", Categoria.ACT);
+		JogoEletronico jogodois = new JogoEletronico("God of War", 2000,350, "Playstation", Categoria.ACT);
+		JogoEletronico jogotres = new JogoEletronico("The Last of Us", 2000,70, "Playstation", Categoria.STR);
+		JogoTabuleiro jogoquatro = new JogoTabuleiro("Damas", 2000, 200, 20); 
+		JogoTabuleiro jogocinco = new JogoTabuleiro("Domino", 2000, 21000, 90);
+		JogoTabuleiro jogoseis = new JogoTabuleiro("Quebra cabeça", 1000,  50000, 80);
+		listaJogos.add(jogoum);
+		listaJogos.add(jogodois);
+		listaJogos.add(jogotres);
+		listaJogos.add(jogoquatro);
+		listaJogos.add(jogocinco);
+		listaJogos.add(jogoseis);
+	}
+
 	public boolean addJogo(Jogo jogo){
 		if(verificaJogo(jogo) == false){
-			apresentaErro(jogo);
+		    apresentaErro(jogo);
 			return false;
 		}
 		apresentaSucesso(jogo);
 		tamanho++;
 		return listaJogos.add(jogo);
+	}
+
+	public boolean verificaJogo(Jogo jogochave){
+		if(listaJogos.size()<1) return true;
+		reset();
+		while(hasNext() == true){
+			Jogo jogo = (Jogo) next();
+			if(jogo.getNome().equals(jogochave.getNome())){
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public void apresentaErro(Jogo jogo){
@@ -51,6 +78,7 @@ public class Ludoteca implements Iterador {
 			System.out.println("2:"+nome+ ","+preco);
 		}
 	}
+	
 
 	public void consultaPorNome(String nome){
 		reset();
@@ -139,7 +167,6 @@ public class Ludoteca implements Iterador {
 	}
 
 	public void consultaJogosCat(String c){
-	ArrayList<JogoEletronico> jogosDaCategoria = new ArrayList<>();
 		String nomeAct = Categoria.ACT.getNome();
 		String nomeStr = Categoria.STR.getNome();
 		String nomeSim = Categoria.SIM.getNome();
@@ -167,18 +194,6 @@ public class Ludoteca implements Iterador {
 		}
 	}
 
-	public boolean verificaJogo(Jogo jogochave){
-		if(listaJogos.size()<1) return true;
-		reset();
-		while(hasNext() == true){
-			Jogo jogo = (Jogo) next();
-			if(jogo.getNome().equals(jogochave.getNome())){
-				return false;
-			}
-		}
-		return true;
-	}
-
 	public void reset() {
 		contador = 0;
 	}
@@ -201,11 +216,9 @@ public class Ludoteca implements Iterador {
 	}
 
 	public void mostraSomatorio(){
-		// boolean verificacao;
 		double somatorio = 0;
 		if(listaJogos.size()<1){
 			System.out.println("6:Nenhum jogo encontrado.");
-			// verificacao = false;
 		} else{
 			for (Jogo jogo : listaJogos) {
 				double valorJogo = jogo.calculaPrecoFinal();
@@ -226,7 +239,6 @@ public class Ludoteca implements Iterador {
                 jogoMaisCaro = jogoT; 
             }
         } 
-		//return jogoMaisCaro;
 
         if (jogoMaisCaro != null) {
             System.out.println("7:" + jogoMaisCaro.getNome() + "," + jogoMaisCaro.calculaPrecoFinal());
@@ -236,15 +248,7 @@ public class Ludoteca implements Iterador {
     }
 }
 
-// Mostrar os dados do jogo de tabuleiro com maior preço final: localiza o jogo
-// de tabuleiro cadastrado com maior preço final. Se não existir nenhum jogo de
-// tabuleiro cadastrado, mostra a mensagem de erro: 7:Nenhum jogo
-// encontrado.
-// Se existir, mostra os dados do jogo no formato: 7:nome,preço final
 
-// Mostrar o somatório de preço final de todos os jogos: calcula o somatório do
-// preço final de todos os jogos do sistema. Se não existir jogo cadastrado no sistema,
-// mostra a mensagem de erro: 6:Nenhum jogo encontrado.
 
 
 
