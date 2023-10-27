@@ -18,7 +18,7 @@ public class Ludoteca implements Iterador {
 
 	public void jogosIniciaisLudoteca(){
 		JogoEletronico jogoum = new JogoEletronico("Resident Evil", 2004, 200, "Playstation", Categoria.ACT);
-		JogoEletronico jogodois = new JogoEletronico("God of War", 2000,350, "Playstation", Categoria.ACT);
+		JogoEletronico jogodois = new JogoEletronico("God of War Ragnarok", 2000,350, "Playstation", Categoria.ACT);
 		JogoEletronico jogotres = new JogoEletronico("The Last of Us", 2000,70, "Playstation", Categoria.STR);
 		JogoTabuleiro jogoquatro = new JogoTabuleiro("Damas", 2002, 25, 20); 
 		JogoTabuleiro jogocinco = new JogoTabuleiro("Domino", 2001, 1234567, 90);
@@ -51,6 +51,19 @@ public class Ludoteca implements Iterador {
 			}
 		}
 		return true;
+	}
+
+	public Categoria defineCategoria(String c){
+		if(c.equalsIgnoreCase("Acao")){
+			return Categoria.ACT;
+		}
+		if(c.equalsIgnoreCase("Simulacao")){
+			return Categoria.SIM;
+		}
+		if(c.equalsIgnoreCase("Estrategia")){
+			return Categoria.STR;
+		}
+		return null;
 	}
 
 	public void apresentaErro(Jogo jogo){
@@ -244,6 +257,10 @@ public class Ludoteca implements Iterador {
             System.out.println("7:Nenhum jogo encontrado.");
         }
     }
+
+	public ArrayList<Jogo> getListaJogos(){
+		return listaJogos;
+	}
 }
 
 

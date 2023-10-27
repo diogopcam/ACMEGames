@@ -45,6 +45,6 @@ public class JogoEletronico extends Jogo{
 	public void jogoEletToString(){
 		jogoToString();
 		System.out.println("Plataforma: "+getPlataforma());
-		System.out.println("Plataforma: "+getCategoria());
+		System.out.println("Categoria: "+getCategoria().getNome());
 	}
 }
