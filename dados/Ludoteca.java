@@ -1,6 +1,7 @@
 package dados;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.text.DecimalFormat; 
 
 public class Ludoteca implements Iterador {
 	private int contador;
@@ -22,7 +23,7 @@ public class Ludoteca implements Iterador {
 		JogoEletronico jogotres = new JogoEletronico("The Last of Us", 2000,70, "Playstation", Categoria.STR);
 		JogoTabuleiro jogoquatro = new JogoTabuleiro("Damas", 2002, 25, 20); 
 		JogoTabuleiro jogocinco = new JogoTabuleiro("Domino", 2001, 1234567, 90);
-		JogoTabuleiro jogoseis = new JogoTabuleiro("Quebra cabeça", 1000,  50000, 80);
+		JogoTabuleiro jogoseis = new JogoTabuleiro("Quebra cabeça", 2000,  50000, 80);
 		listaJogos.add(jogoum);
 		listaJogos.add(jogodois);
 		listaJogos.add(jogotres);
@@ -235,13 +236,14 @@ public class Ludoteca implements Iterador {
 				double valorJogo = jogo.calculaPrecoFinal();
 				somatorio += valorJogo;
 			}
-			System.out.println("6:" + somatorio);
+			System.out.printf("6: R$ %.2f %n", somatorio);
 		}
 	}
 
 	public void maiorPrecoFinal(){
 		JogoTabuleiro jogoMaisCaro = null;
         double maior = 0;
+		preencheJogosTabuleiro();
         
         for (JogoTabuleiro jogoT : preencheJogosTabuleiro()) {
             double precoFinal = jogoT.calculaPrecoFinal();

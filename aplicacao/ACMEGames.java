@@ -59,43 +59,25 @@ public class ACMEGames {
 		}
 
         //Terceiro passo: Verificar se existe um jogo pelo nome
-			while(entradaSaida.entrada.hasNextLine()){
-				String linha = entradaSaida.entrada.nextLine();
-				if(linha.equals("-1")){
-					System.out.println("Saiu do loop porque digitei -1!"); 
-					break;
-				}
-				ludoteca.consultaPorNome(linha);
-		}
+		String linhaNome = entradaSaida.entrada.nextLine();
+		ludoteca.consultaPorNome(linhaNome);
+	
 
-		//Quarto passo: Verificar se existem jogos de determinado ano
-		while(entradaSaida.entrada.hasNextLine()){
-				String linha = entradaSaida.entrada.nextLine();
-				if(linha.equals("-1")){
-					System.out.println("Saiu do loop porque digitei -1!"); 
-					break;
-				}
-				int anoDesejado = Integer.parseInt(linha);
-				ludoteca.jogosDoAnoToString(anoDesejado);
-		}
+		// Quarto passo: Verificar se existem jogos de determinado ano
+		String linhaAno = entradaSaida.entrada.nextLine();
+		int anoDesejado = Integer.parseInt(linhaAno);
+		ludoteca.jogosDoAnoToString(anoDesejado);
 
+		//Quinto passo: Mostrar os dados de jogos de determinada categoria
+	    //aconselhavel alterar esse método, para que n seja necessario invocar um método para prencher o array sempre que um objeto for instanciado
+		String linhaCategoria = entradaSaida.entrada.nextLine();
+		ludoteca.consultaJogosCat(linhaCategoria);
 
-
-
-
-		// // ludoteca.jogosDoAnoToString(2002);
-
-		// // //Quinto passo: Mostrar os dados de jogos de determinada categoria
-		// // //(optei por construir o metodo utilizando o tipo String, utilizando o atributo nome do enum Categoria)
-		// // //aconselhavel alterar esse método, para que n seja necessario invocar um método para prencher o array sempre que um objeto for instanciado
-		// // ludoteca.consultaJogosCat("acao");
-
-		// // //Sexto passo: Mostrar o somatório de preço de todos os jogos
-		// // ludoteca.mostraSomatorio();
-
-		// // //Sétimo passo: mostrar os dados do jogo de tabuleiro com maior preço final
-		// // //ludoteca.preencheJogosTabuleiro();
-		// // ludoteca.maiorPrecoFinal();
+		//Sexto passo: Mostrar o somatório de preço de todos os jogos
+		ludoteca.mostraSomatorio();
+	}
+		//Sétimo passo: mostrar os dados do jogo de tabuleiro com maior preço final
+		ludoteca.maiorPrecoFinal();
 	}
 }
-}
+

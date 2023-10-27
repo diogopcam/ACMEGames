@@ -6,8 +6,6 @@ Super Mario Odissey;2017;289.89;Switch;Acao
 Jogo da Vida;2000;121.34;70
 Cara a cara;2000;15700.56;32
 -1
-civilization v
-Super mario odissey
--1
-50000
--1
+God of War ragnarok
+2000
+Terror
