@@ -20,4 +20,8 @@ public class JogoTabuleiro extends Jogo {
 		double valorFinal = getPrecoBase() + ((1.0/100.0)*getPrecoBase());
 		return Double.parseDouble(String.format("%.2f", valorFinal));
 	}
+
+	public void jogoTabToString(){
+		System.out.println(getNome()+","+getAno()+","+getPrecoBase()+","+getNumeroPecas()+","+calculaPrecoFinal());
+	}
 }

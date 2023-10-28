@@ -25,12 +25,12 @@ public class Ludoteca implements Iterador {
 	}
 
 	public void jogosIniciaisLudoteca(){
-		JogoEletronico jogoum = new JogoEletronico("Resident Evil", 2004, 200, "Playstation", Categoria.ACT);
-		JogoEletronico jogodois = new JogoEletronico("God of War Ragnarok", 2000,350, "Playstation", Categoria.ACT);
-		JogoEletronico jogotres = new JogoEletronico("The Last of Us", 2000,70, "Playstation", Categoria.STR);
-		JogoTabuleiro jogoquatro = new JogoTabuleiro("Damas", 2002, 25, 20); 
-		JogoTabuleiro jogocinco = new JogoTabuleiro("Domino", 2001, 100, 90);
-		JogoTabuleiro jogoseis = new JogoTabuleiro("Quebra cabeça", 2000,  500, 80);
+		JogoEletronico jogoum = new JogoEletronico("Resident Evil", 2004, 6000, "Playstation", Categoria.ACT);
+		JogoEletronico jogodois = new JogoEletronico("God of War Ragnarok", 2000,5999, "Playstation", Categoria.ACT);
+		JogoEletronico jogotres = new JogoEletronico("The Last of Us", 1200,6002, "Playstation", Categoria.STR);
+		JogoTabuleiro jogoquatro = new JogoTabuleiro("Damas", 1555, 6009, 20); 
+		JogoTabuleiro jogocinco = new JogoTabuleiro("Domino", 2001, 7000, 90);
+		JogoTabuleiro jogoseis = new JogoTabuleiro("Quebra cabeça", 1120,  8000, 80);
 		listaJogos.add(jogoum);
 		listaJogos.add(jogodois);
 		listaJogos.add(jogotres);
@@ -300,18 +300,47 @@ public class Ludoteca implements Iterador {
 	public Jogo jogoProximoMedia(){
 		if(listaJogos.size() < 1) return null;
 		reset();
-		Jogo primeiroJogo = (Jogo) next();
+		Jogo jogoMaisProximo = null;
+		double diferenca = 99999999;
+		double apoio = 0;
 		while(hasNext() == true){
 			Jogo jogo = (Jogo) next();
 			if(media > jogo.getPrecoBase()){
-				double diferenca = media - jogo.getPrecoBase();
+				apoio = media - jogo.getPrecoBase();
 			}
+			
 			if(media < jogo.getPrecoBase()){
-				double diferenca = jogo.getPrecoBase() - media;
+				apoio = jogo.getPrecoBase() - media;
 			}
+			
+			if(apoio < diferenca){
+				diferenca = apoio;
+				jogoMaisProximo = jogo;
+			}
+			}
+			return jogoMaisProximo;
 		}
+
+		public JogoTabuleiro jogoTabuleiroAntigo(){
+			if(listaJogos.size() < 1) return null;
+			reset();
+			int anoAntigo = 9999;
+			JogoTabuleiro jogoMaisAntigo = null;
+			while(hasNext() == true){
+				Jogo jogoApoio = (Jogo) next();
+				if(jogoApoio instanceof JogoTabuleiro){
+					JogoTabuleiro jogoT = (JogoTabuleiro) jogoApoio;
+					int anoTab = jogoApoio.getAno();
+					if(anoTab < anoAntigo){
+						anoAntigo = anoTab;
+						jogoMaisAntigo = jogoT;
+					}
+				}
+			}
+			return jogoMaisAntigo;
 	}
 }
+
 
 
 

@@ -1,19 +1,21 @@
-1:Civilization V,321.27
+1:Civilization V,10200.34
 1:Erro-jogo com nome repetido:Resident Evil
 1:Erro-jogo com nome repetido:God of War Ragnarok
-1:Super Mario Odissey,318.88
+1:Super Mario Odissey,6600.98
 Saiu do loop porque digitei -1!
 2:Jogo da Vida,122.55
 2:Cara a cara,707.57
 Saiu do loop porque digitei -1!
-3:God of War Ragnarok,2000,350.0,Playstation,Acao,385.0
-4:God of War Ragnarok,2000,350.0,Playstation,Acao,385.0
-4:The Last of Us,2000,70.0,Playstation,Estrategia,119.0
-4:Quebra cabeça,2000,500.0,80,505.0
+3:God of War Ragnarok,2000,5999.0,Playstation,Acao,6598.9
+4:God of War Ragnarok,2000,5999.0,Playstation,Acao,6598.9
 4:Jogo da Vida,2000,121.34,70,122.55
 4:Cara a cara,2000,700.56,32,707.57
 5:Categoria inexistente
-6: R$ 2825.52 
-7:Cara a cara,R$ 707.57
-2545.77
-10
+6: R$ 62252.83 
+7:Quebra cabeça,R$ 8080.0
+5183.299
+Nome: God of War Ragnarok
+Ano: 2000
+Preço base: 5999.0
+8:5183.299,God of War Ragnarok,2000,5999.0,Playstation,Acao,6598.9
+8:Quebra cabeça,1120
