@@ -8,6 +8,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		ACMEGames aplicacao = new ACMEGames();
+		aplicacao.executa();
 		// Ludoteca ludoteca = new Ludoteca();
 
 		// JogoEletronico jogoum = new JogoEletronico("God of War", 2000,900, "Playstation", Categoria.ACT);

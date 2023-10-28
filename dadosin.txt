@@ -4,7 +4,7 @@ God of War Ragnarok;2014;55.03;PC;Simulacao
 Super Mario Odissey;2017;289.89;Switch;Acao
 -1
 Jogo da Vida;2000;121.34;70
-Cara a cara;2000;15700.56;32
+Cara a cara;2000;700.56;32
 -1
 God of War ragnarok
 2000

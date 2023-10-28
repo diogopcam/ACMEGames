@@ -4,14 +4,16 @@
 1:Super Mario Odissey,318.88
 Saiu do loop porque digitei -1!
 2:Jogo da Vida,122.55
-2:Cara a cara,15857.57
+2:Cara a cara,707.57
 Saiu do loop porque digitei -1!
 3:God of War Ragnarok,2000,350.0,Playstation,Acao,385.0
 4:God of War Ragnarok,2000,350.0,Playstation,Acao,385.0
 4:The Last of Us,2000,70.0,Playstation,Estrategia,119.0
-4:Quebra cabeça,2000,50000.0,80,50500.0
+4:Quebra cabeça,2000,500.0,80,505.0
 4:Jogo da Vida,2000,121.34,70,122.55
-4:Cara a cara,2000,15700.56,32,15857.57
+4:Cara a cara,2000,700.56,32,707.57
 5:Categoria inexistente
-6: R$ 1314782.19 
-7:Domino,R$ 1246912.67
+6: R$ 2825.52 
+7:Cara a cara,R$ 707.57
+2545.77
+10
