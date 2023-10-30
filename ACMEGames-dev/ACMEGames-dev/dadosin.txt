@@ -1,0 +1,9 @@
+god of war;2000;290;PS4;acao
+minecraft;2010;150;PC;estrategia
+-1
+damas;1930;80;35
+xadrez;1910;75;20
+-1
+damas
+2010
+simulacao

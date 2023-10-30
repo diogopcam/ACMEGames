@@ -1,0 +1,11 @@
+1:god of war,319.0
+1:minecraft,255.0
+2:damas,80.8
+2:xadrez,75.75
+3:damas,1930,80.0,35,80.8
+4:minecraft,2010,150.0,PC,Estrategia,255.0
+5:Não existe jogo com essa categoria
+6: R$ 730.55 
+7:damas,R$ 80.8
+8:148.75,minecraft,2010,150.0,PC,Estrategia,255.0
+9:xadrez,1910
