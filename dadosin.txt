@@ -1,4 +1,4 @@
-Civilization V;2010;6000.2;PS4;ESTRATEGIA
+digimon;2010;6000.2;PS4;ESTRATEGIA
 Resident Evil;2022;215.14;PS5;Acao
 God of War Ragnarok;2014;6000.1;PC;Simulacao
 Super Mario Odissey;2017;6000.89;Switch;Acao

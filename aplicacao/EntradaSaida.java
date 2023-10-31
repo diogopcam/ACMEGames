@@ -8,9 +8,9 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class EntradaSaida {
-    Scanner entrada = null; 
+    private Scanner entrada = null; 
     //DEFINE A ENTRADA DE DADOS                // Atributo para entrada de dados (entrada)
-    PrintStream saidaPadrao = System.out;   // Guarda a saida padrao - tela(console) (saida)
+    private PrintStream saidaPadrao = System.out;   // Guarda a saida padrao - tela(console) (saida)
     //SAIDA 
 
     // Construtor
@@ -33,6 +33,10 @@ public class EntradaSaida {
     private void restauraES() {
         System.setOut(saidaPadrao);
         entrada = new Scanner(System.in);
+    }
+
+    public Scanner getEntrada() {
+        return entrada;
     }
 
     

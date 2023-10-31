@@ -23,9 +23,9 @@ public class ACMEGames {
 		ludoteca.jogosIniciaisLudoteca();
 		
 		//Primeiro passo: Cadastrar um jogo eletrônico 
-		if(entradaSaida.entrada != null){
-			while(entradaSaida.entrada.hasNextLine()){
-				String linha = entradaSaida.entrada.nextLine();
+		if(entradaSaida.getEntrada() != null){
+			while(entradaSaida.getEntrada().hasNextLine()){
+				String linha = entradaSaida.getEntrada().nextLine();
 				if(linha.equals("-1")){
 					System.out.println("Saiu do loop porque digitei -1!"); 
 					break;
@@ -43,8 +43,8 @@ public class ACMEGames {
 			}
 
 		//Segundo passo: Cadastrar um jogo de tabuleiro
-			while(entradaSaida.entrada.hasNextLine()){
-				String linha = entradaSaida.entrada.nextLine();
+			while(entradaSaida.getEntrada().hasNextLine()){
+				String linha = entradaSaida.getEntrada().nextLine();
 				if(linha.equals("-1")){
 					System.out.println("Saiu do loop porque digitei -1!"); 
 					break;
@@ -60,18 +60,18 @@ public class ACMEGames {
 		}
 
         //Terceiro passo: Verificar se existe um jogo pelo nome
-		String linhaNome = entradaSaida.entrada.nextLine();
+		String linhaNome = entradaSaida.getEntrada().nextLine();
 		consultaPorNome(linhaNome);
 	
 
 		// Quarto passo: Verificar se existem jogos de determinado ano
-		String linhaAno = entradaSaida.entrada.nextLine();
+		String linhaAno = entradaSaida.getEntrada().nextLine();
 		int anoDesejado = Integer.parseInt(linhaAno);
 		jogosDoAnoToString(anoDesejado);
 
 		//Quinto passo: Mostrar os dados de jogos de determinada categoria
 	    //aconselhavel alterar esse método, para que n seja necessario invocar um método para prencher o array sempre que um objeto for instanciado
-		String linhaCategoria = entradaSaida.entrada.nextLine();
+		String linhaCategoria = entradaSaida.getEntrada().nextLine();
 		consultaJogosCat(linhaCategoria);
 
 		//Sexto passo: Mostrar o somatório de preço de todos os jogos
