@@ -42,10 +42,10 @@ public class Ludoteca implements Iterador {
 	public boolean addJogo(Jogo jogo){
 		//ACMEGames n = new ACMEGames();
 		if(verificaJogo(jogo) == false){
-		    apresentaErro(jogo);
+		    //apresentaErro(jogo);
 			return false;
 		}
-		apresentaSucesso(jogo);
+		//apresentaSucesso(jogo);
 		return listaJogos.add(jogo);
 	}
 
@@ -74,29 +74,29 @@ public class Ludoteca implements Iterador {
 		return null;
 	}
 
-	public void apresentaErro(Jogo jogo){
-		if(jogo instanceof JogoEletronico){
-			String nome = jogo.getNome();
-			System.out.println("1:Erro-jogo com nome repetido:"+ nome);
-		}
-		if(jogo instanceof JogoTabuleiro){
-			String nome = jogo.getNome();
-			System.out.println("2:Erro-jogo com nome repetido:"+ nome);
-		}
-	}
+	// public void apresentaErro(Jogo jogo){
+	// 	if(jogo instanceof JogoEletronico){
+	// 		String nome = jogo.getNome();
+	// 		System.out.println("1:Erro-jogo com nome repetido:"+ nome);
+	// 	}
+	// 	if(jogo instanceof JogoTabuleiro){
+	// 		String nome = jogo.getNome();
+	// 		System.out.println("2:Erro-jogo com nome repetido:"+ nome);
+	// 	}
+	// }
 
-	public void apresentaSucesso(Jogo jogo){
-		if(jogo instanceof JogoEletronico){
-			String nome = jogo.getNome();
-			double preco = jogo.calculaPrecoFinal();
-			System.out.println("1:"+nome+ ","+preco);
-		}
-		if(jogo instanceof JogoTabuleiro){
-			String nome = jogo.getNome();
-			double preco = jogo.calculaPrecoFinal();
-			System.out.println("2:"+nome+ ","+preco);
-		}
-	}
+	// public void apresentaSucesso(Jogo jogo){
+	// 	if(jogo instanceof JogoEletronico){
+	// 		String nome = jogo.getNome();
+	// 		double preco = jogo.calculaPrecoFinal();
+	// 		System.out.println("1:"+nome+ ","+preco);
+	// 	}
+	// 	if(jogo instanceof JogoTabuleiro){
+	// 		String nome = jogo.getNome();
+	// 		double preco = jogo.calculaPrecoFinal();
+	// 		System.out.println("2:"+nome+ ","+preco);
+	// 	}
+	// }
 	
 	// public void consultaPorNome(String nome){
 	// 	reset();

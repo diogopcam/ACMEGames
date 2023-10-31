@@ -27,7 +27,7 @@ public class ACMEGames {
 			while(entradaSaida.getEntrada().hasNextLine()){
 				String linha = entradaSaida.getEntrada().nextLine();
 				if(linha.equals("-1")){
-					System.out.println("Saiu do loop porque digitei -1!"); 
+					//System.out.println("Saiu do loop porque digitei -1!"); 
 					break;
 				}
 				String[] camposSeparados = linha.split(";");
@@ -39,14 +39,14 @@ public class ACMEGames {
 
 				
 				JogoEletronico jogoAnalisado = new JogoEletronico(nome, ano, preco, plataforma, ludoteca.defineCategoria(categoria));
-				ludoteca.addJogo(jogoAnalisado);
+				if(ludoteca.addJogo(jogoAnalisado) == false) apresentaErro(jogoAnalisado);
+				apresentaSucesso(jogoAnalisado);
 			}
 
 		//Segundo passo: Cadastrar um jogo de tabuleiro
 			while(entradaSaida.getEntrada().hasNextLine()){
 				String linha = entradaSaida.getEntrada().nextLine();
 				if(linha.equals("-1")){
-					System.out.println("Saiu do loop porque digitei -1!"); 
 					break;
 				}
 				String[] camposSeparados = linha.split(";");
@@ -91,16 +91,25 @@ public class ACMEGames {
 		apresentaJogoTabMaisAntigo();
 	}
 
-	// public void apresentaErro(Jogo jogo){
-	// 	if(jogo instanceof JogoEletronico){
-	// 		String nome = jogo.getNome();
-	// 		System.out.println("1:Erro-jogo com nome repetido:"+ nome);
-	// 	}
-	// 	if(jogo instanceof JogoTabuleiro){
-	// 		String nome = jogo.getNome();
-	// 		System.out.println("2:Erro-jogo com nome repetido:"+ nome);
-	// 	}
-	// }
+	public void apresentaErro(Jogo jogo){
+		if(jogo instanceof JogoEletronico){
+			String nome = jogo.getNome();
+			System.out.println("1:Erro-jogo com nome repetido:"+ nome);
+		}
+		if(jogo instanceof JogoTabuleiro){
+			String nome = jogo.getNome();
+			System.out.println("2:Erro-jogo com nome repetido:"+ nome);
+		}
+	}
+
+	public void apresentaSucesso(Jogo jogo){
+		if(jogo instanceof JogoEletronico){
+			System.out.println("1:"+jogo.getNome()+ ","+jogo.calculaPrecoFinal());
+		}
+		if(jogo instanceof JogoTabuleiro){
+			System.out.println("2:"+jogo.getNome()+ ","+jogo.calculaPrecoFinal());
+		}
+	}
 
 	// public void apresentaSucesso(Jogo jogo){
 	// 	if(jogo instanceof JogoEletronico){

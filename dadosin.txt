@@ -1,6 +1,6 @@
-digimon;2010;6000.2;PS4;ESTRATEGIA
 Resident Evil;2022;215.14;PS5;Acao
 God of War Ragnarok;2014;6000.1;PC;Simulacao
+digimon;2000;350;pc;acao
 Super Mario Odissey;2017;6000.89;Switch;Acao
 -1
 Jogo da Vida;2000;121.34;70
