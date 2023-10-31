@@ -39,8 +39,11 @@ public class ACMEGames {
 
 				
 				JogoEletronico jogoAnalisado = new JogoEletronico(nome, ano, preco, plataforma, ludoteca.defineCategoria(categoria));
-				if(ludoteca.addJogo(jogoAnalisado) == false) apresentaErro(jogoAnalisado);
-				apresentaSucesso(jogoAnalisado);
+				if(ludoteca.addJogo(jogoAnalisado) == false){
+					apresentaErro(jogoAnalisado);
+				} else {
+					apresentaSucesso(jogoAnalisado);
+				}
 			}
 
 		//Segundo passo: Cadastrar um jogo de tabuleiro
@@ -56,7 +59,11 @@ public class ACMEGames {
 				int numeroPecas = Integer.parseInt(camposSeparados[3]);
 
 				JogoTabuleiro jogoAnalisado = new JogoTabuleiro(nome, ano, preco, numeroPecas);
-				ludoteca.addJogo(jogoAnalisado);
+				if(ludoteca.addJogo(jogoAnalisado) == false){
+					apresentaErro(jogoAnalisado);
+				} else {
+					apresentaSucesso(jogoAnalisado);
+				}
 		}
 
         //Terceiro passo: Verificar se existe um jogo pelo nome
@@ -81,9 +88,6 @@ public class ACMEGames {
 		maiorPrecoFinal();
 
 		//Oitavo passo: apresentar valor mais proximo da media dos precos bases
-		double valor = ludoteca.valorTotalPrecosBases();
-		System.out.println(ludoteca.defineMedia(valor));
-		ludoteca.jogoProximoMedia().jogoToString();
 		apresentaMedia();
 
 		//Nono passo: • Mostrar os dados do jogo de tabuleiro mais antigo: mostra os dados do jogo d
@@ -110,19 +114,6 @@ public class ACMEGames {
 			System.out.println("2:"+jogo.getNome()+ ","+jogo.calculaPrecoFinal());
 		}
 	}
-
-	// public void apresentaSucesso(Jogo jogo){
-	// 	if(jogo instanceof JogoEletronico){
-	// 		String nome = jogo.getNome();
-	// 		double preco = jogo.calculaPrecoFinal();
-	// 		System.out.println("1:"+nome+ ","+preco);
-	// 	}
-	// 	if(jogo instanceof JogoTabuleiro){
-	// 		String nome = jogo.getNome();
-	// 		double preco = jogo.calculaPrecoFinal();
-	// 		System.out.println("2:"+nome+ ","+preco);
-	// 	}
-	// }
 	
 	public void consultaPorNome(String nome){
 		ludoteca.reset();
@@ -283,13 +274,13 @@ public class ACMEGames {
 		if(jogoGuia instanceof JogoTabuleiro){
 			JogoTabuleiro jogoT = (JogoTabuleiro) jogoGuia;
 			System.out.println("8:"+media+","+jogoT.getNome()+","+jogoT.getAno()+","+jogoT.getPrecoBase()+","+jogoT.getNumeroPecas());
-	}
-}
+		}
+    }
 
-public void apresentaJogoTabMaisAntigo(){
-	JogoTabuleiro jogoAntigo = ludoteca.jogoTabuleiroAntigo();
-	if(jogoAntigo == null) System.out.println("9:Nenhum jogo encontrado.");
-	System.out.println("9:"+jogoAntigo.getNome()+","+jogoAntigo.getAno());
-}
+	public void apresentaJogoTabMaisAntigo(){
+		JogoTabuleiro jogoAntigo = ludoteca.jogoTabuleiroAntigo();
+		if(jogoAntigo == null) System.out.println("9:Nenhum jogo encontrado.");
+		System.out.println("9:"+jogoAntigo.getNome()+","+jogoAntigo.getAno());
+	}
 }
 

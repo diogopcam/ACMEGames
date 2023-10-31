@@ -1,5 +1,9 @@
 1:Erro-jogo com nome repetido:Resident Evil
 1:Erro-jogo com nome repetido:God of War Ragnarok
+1:digimon,385.0
+1:Super Mario Odissey,6600.98
+2:Jogo da Vida,122.55
+2:Cara a cara,707.57
 3:God of War Ragnarok,2000,5999.0,Playstation,Acao,6598.9
 4:God of War Ragnarok,2000,5999.0,Playstation,Acao,6598.9
 4:digimon,2000,350.0,pc,Acao,385.0
@@ -8,9 +12,5 @@
 5:Categoria inexistente
 6: R$ 52437.49 
 7:Quebra cabeça,R$ 8080.0
-4618.279
-Nome: God of War Ragnarok
-Ano: 2000
-Preço base: 5999.0
-8:4618.279,God of War Ragnarok,2000,5999.0,Playstation,Acao,6598.9
+8:4618.279,Jogo da Vida,2000,121.34,70
 9:Quebra cabeça,1120
