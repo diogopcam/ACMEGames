@@ -2,36 +2,20 @@ package dados;
 import java.util.ArrayList;
 import java.util.Iterator;
 import aplicacao.ACMEGames;
-
-import java.text.DecimalFormat; 
+import java.text.DecimalFormat;
+import java.time.chrono.JapaneseChronology; 
 
 public class Ludoteca implements Iterador {
 	private int contador;
 	private ArrayList<Jogo> listaJogos;
 	private double precoFinalLudoteca;
 	private double totalPrecosBases;
-	private double media;
 	
 	public Ludoteca(){
 		contador = 0;
 		listaJogos = new ArrayList<Jogo>();
 		precoFinalLudoteca = 0;
 		totalPrecosBases = 0;
-	}
-
-	public void jogosIniciaisLudoteca(){
-		JogoEletronico jogoum = new JogoEletronico("Resident Evil", 2004, 6000, "Playstation", Categoria.ACT);
-		JogoEletronico jogodois = new JogoEletronico("God of War Ragnarok", 2000,5999, "Playstation", Categoria.ACT);
-		JogoEletronico jogotres = new JogoEletronico("The Last of Us", 1200,6002, "Playstation", Categoria.STR);
-		JogoTabuleiro jogoquatro = new JogoTabuleiro("Damas", 1555, 6009, 20); 
-		JogoTabuleiro jogocinco = new JogoTabuleiro("Domino", 2001, 7000, 90);
-		JogoTabuleiro jogoseis = new JogoTabuleiro("Quebra cabeça", 1120,  8000, 80);
-		listaJogos.add(jogoum);
-		listaJogos.add(jogodois);
-		listaJogos.add(jogotres);
-		listaJogos.add(jogoquatro);
-		listaJogos.add(jogocinco);
-		listaJogos.add(jogoseis);
 	}
 
 	public boolean addJogo(Jogo jogo){
@@ -51,6 +35,17 @@ public class Ludoteca implements Iterador {
 			}
 		}
 		return true;
+	}
+
+	public Jogo consultaPorNome(String nome){
+		reset();
+		while(hasNext() == true){
+			Jogo jogo = (Jogo) next();
+			if(jogo.getNome().equalsIgnoreCase(nome)){
+				return jogo;
+			}
+		}
+		return null;
 	}
 
 	public Categoria defineCategoria(String c){
@@ -104,33 +99,34 @@ public class Ludoteca implements Iterador {
 		return Double.parseDouble(String.format("%.2f", totalPrecosBases));
 	}
 
-	public double defineMedia(double totalPrecosBases){
+	public double defineMedia(){
 		double media = valorTotalPrecosBases()/listaJogos.size();
-		return media;
+		return Double.parseDouble(String.format("%.2f", media));
 	}
 
-	public Jogo jogoProximoMedia(){
-		if(listaJogos.size() < 1) return null;
-		reset();
-		Jogo jogoMaisProximo = null;
-		double diferenca = 99999999;
-		double apoio = 0;
-		while(hasNext() == true){
-			Jogo jogo = (Jogo) next();
-			if(media > jogo.getPrecoBase()){
-				apoio = media - jogo.getPrecoBase();
-			}
+	public Jogo jogoProximoMedia(double media) {		
+			if(listaJogos.size() < 1) return null;
 			
-			if(media < jogo.getPrecoBase()){
-				apoio = jogo.getPrecoBase() - media;
-			}
-			
-			if(apoio < diferenca){
-				diferenca = apoio;
-				jogoMaisProximo = jogo;
-			}
-			}
-			return jogoMaisProximo;
+			reset();
+			Jogo jogoMaisProximo = null;
+			double diferenca = 99999999;
+			double apoio = 0;
+			while(hasNext() == true){
+				Jogo jogo = (Jogo) next();
+				if(media > jogo.getPrecoBase()){
+					apoio = media - jogo.getPrecoBase();
+				}
+				
+				if(media < jogo.getPrecoBase()){
+					apoio = jogo.getPrecoBase() - media;
+				}
+				
+				if(apoio < diferenca){
+					diferenca = apoio;
+					jogoMaisProximo = jogo;
+				}
+				}
+				return jogoMaisProximo;
 		}
 
 		public JogoTabuleiro jogoTabuleiroAntigo(){

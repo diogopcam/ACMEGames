@@ -12,22 +12,17 @@ public class ACMEGames {
 	private Ludoteca ludoteca;
 	private EntradaSaida entradaSaida;
 
-
 	public ACMEGames() {
 		ludoteca = new Ludoteca();
 		entradaSaida = new EntradaSaida();
-		//executa();
 	}
 
 	public void executa() {
-		ludoteca.jogosIniciaisLudoteca();
-		
 		//Primeiro passo: Cadastrar um jogo eletrônico 
 		if(entradaSaida.getEntrada() != null){
 			while(entradaSaida.getEntrada().hasNextLine()){
 				String linha = entradaSaida.getEntrada().nextLine();
 				if(linha.equals("-1")){
-					//System.out.println("Saiu do loop porque digitei -1!"); 
 					break;
 				}
 				String[] camposSeparados = linha.split(";");
@@ -68,8 +63,7 @@ public class ACMEGames {
 
         //Terceiro passo: Verificar se existe um jogo pelo nome
 		String linhaNome = entradaSaida.getEntrada().nextLine();
-		consultaPorNome(linhaNome);
-	
+		consultaToString(linhaNome);
 
 		// Quarto passo: Verificar se existem jogos de determinado ano
 		String linhaAno = entradaSaida.getEntrada().nextLine();
@@ -77,64 +71,56 @@ public class ACMEGames {
 		jogosDoAnoToString(anoDesejado);
 
 		//Quinto passo: Mostrar os dados de jogos de determinada categoria
-	    //aconselhavel alterar esse método, para que n seja necessario invocar um método para prencher o array sempre que um objeto for instanciado
 		String linhaCategoria = entradaSaida.getEntrada().nextLine();
 		consultaJogosCat(linhaCategoria);
 
 		//Sexto passo: Mostrar o somatório de preço de todos os jogos
 		mostraSomatorio();
-	}
+
 		//Sétimo passo: mostrar os dados do jogo de tabuleiro com maior preço final
 		maiorPrecoFinal();
 
 		//Oitavo passo: apresentar valor mais proximo da media dos precos bases
 		apresentaMedia();
 
+
 		//Nono passo: • Mostrar os dados do jogo de tabuleiro mais antigo: mostra os dados do jogo d
-		//ludoteca.jogoTabuleiroAntigo().jogoTabToString();
 		apresentaJogoTabMaisAntigo();
+	}
 	}
 
 	public void apresentaErro(Jogo jogo){
 		if(jogo instanceof JogoEletronico){
 			String nome = jogo.getNome();
-			System.out.println("1:Erro-jogo com nome repetido:"+ nome);
+			System.out.println("1:Erro-jogo com nome repetido: "+ nome);
 		}
 		if(jogo instanceof JogoTabuleiro){
 			String nome = jogo.getNome();
-			System.out.println("2:Erro-jogo com nome repetido:"+ nome);
+			System.out.println("2:Erro-jogo com nome repetido: "+ nome);
 		}
 	}
 
 	public void apresentaSucesso(Jogo jogo){
 		if(jogo instanceof JogoEletronico){
-			System.out.println("1:"+jogo.getNome()+ ","+jogo.calculaPrecoFinal());
+			System.out.println("1:"+jogo.getNome()+ ",R$ "+jogo.calculaPrecoFinal());
 		}
 		if(jogo instanceof JogoTabuleiro){
-			System.out.println("2:"+jogo.getNome()+ ","+jogo.calculaPrecoFinal());
+			System.out.println("2:"+jogo.getNome()+ ",R$ "+jogo.calculaPrecoFinal());
 		}
 	}
-	
-	public void consultaPorNome(String nome){
-		ludoteca.reset();
-		boolean analise = false;
-		
-		while(ludoteca.hasNext() == true){
-			Jogo jogo = (Jogo) ludoteca.next();
-			
-			if(jogo.getNome().equalsIgnoreCase(nome)){
-				analise = true;
-				if(jogo instanceof JogoEletronico){
-					JogoEletronico jogoE = (JogoEletronico) jogo; 
-					System.out.println("3:"+jogoE.getNome()+","+jogoE.getAno()+","+jogoE.getPrecoBase()+","+jogoE.getPlataforma()+","+jogoE.getCategoria().getNome()+","+jogoE.calculaPrecoFinal());
-				} else if(jogo instanceof JogoTabuleiro){
-					JogoTabuleiro jogoT = (JogoTabuleiro) jogo;
-					System.out.println("3:"+jogoT.getNome()+","+jogoT.getAno()+","+jogoT.getPrecoBase()+","+jogoT.getNumeroPecas()+","+jogoT.calculaPrecoFinal());
-				}
-			}
-		}
-		if (!analise){
+
+	public void consultaToString(String nome){
+		Jogo jogoBuscado = ludoteca.consultaPorNome(nome);
+		if(jogoBuscado==null){
 			System.out.println("3:Nome inexistente.");
+		} else{
+			if(ludoteca.consultaPorNome(nome) instanceof JogoEletronico){
+				JogoEletronico jogoE = (JogoEletronico) jogoBuscado; 
+					System.out.println("3:"+jogoE.getNome()+","+jogoE.getAno()+",R$ "+jogoE.getPrecoBase()+","+jogoE.getPlataforma()+","+jogoE.getCategoria().getNome()+",R$ "+jogoE.calculaPrecoFinal());
+				} else if(jogoBuscado instanceof JogoTabuleiro){
+					JogoTabuleiro jogoT = (JogoTabuleiro) jogoBuscado;
+					System.out.println("3:"+jogoT.getNome()+","+jogoT.getAno()+",R$ "+jogoT.getPrecoBase()+","+jogoT.getNumeroPecas()+",R$ "+jogoT.calculaPrecoFinal());
+				}
 		}
 	}
 
@@ -169,10 +155,10 @@ public class ACMEGames {
 			for(Jogo jogo: consultaPorAno(ano)){
 				if(jogo instanceof JogoEletronico){
 					JogoEletronico jogoE = (JogoEletronico) jogo; 
-					System.out.println("4:"+jogoE.getNome()+","+jogoE.getAno()+","+jogoE.getPrecoBase()+","+jogoE.getPlataforma()+","+jogoE.getCategoria().getNome()+","+jogoE.calculaPrecoFinal());
+					System.out.println("4:"+jogoE.getNome()+","+jogoE.getAno()+",R$ "+jogoE.getPrecoBase()+","+jogoE.getPlataforma()+","+jogoE.getCategoria().getNome()+",R$ "+jogoE.calculaPrecoFinal());
 				} else if(jogo instanceof JogoTabuleiro){
 					JogoTabuleiro jogoT = (JogoTabuleiro) jogo;
-					System.out.println("4:"+jogoT.getNome()+","+jogoT.getAno()+","+jogoT.getPrecoBase()+","+jogoT.getNumeroPecas()+","+jogoT.calculaPrecoFinal());
+					System.out.println("4:"+jogoT.getNome()+","+jogoT.getAno()+",R$ "+jogoT.getPrecoBase()+","+jogoT.getNumeroPecas()+",R$ "+jogoT.calculaPrecoFinal());
 				}
 			}
 		}
@@ -221,12 +207,12 @@ public class ACMEGames {
 		boolean categoriaVer = false;
 		for(JogoEletronico jogo: preencheJogosEletronicos()){
 			if(jogo.getCategoria().getNome().equalsIgnoreCase(c)){
-				System.out.println("5:"+jogo.getNome()+","+jogo.getAno()+","+jogo.getPrecoBase()+","+jogo.getPlataforma()+","+jogo.getCategoria()+","+jogo.calculaPrecoFinal());
+				System.out.println("5:"+jogo.getNome()+","+jogo.getAno()+",R$ "+jogo.getPrecoBase()+","+jogo.getPlataforma()+","+jogo.getCategoria().getNome()+",R$ "+jogo.calculaPrecoFinal());
 				categoriaVer = true;
 			} 
 		}
 		if(!categoriaVer){
-			System.out.println("5:Não existe jogo com essa categoria");
+			System.out.println("5:Nenhum jogo encontrado");
 		}
 	}
 
@@ -264,23 +250,26 @@ public class ACMEGames {
     }
 
 	public void apresentaMedia(){
-		double media = ludoteca.defineMedia(ludoteca.valorTotalPrecosBases());
-		Jogo jogoGuia = ludoteca.jogoProximoMedia();
+		double media = ludoteca.defineMedia();
+		Jogo jogoGuia = ludoteca.jogoProximoMedia(media);
 		if(jogoGuia==null) System.out.println("8: Nenhum jogo encontrado");
 		if(jogoGuia instanceof JogoEletronico){
 			JogoEletronico jogoE = (JogoEletronico) jogoGuia;
-			System.out.println("8:"+media+","+jogoE.getNome()+","+jogoE.getAno()+","+jogoE.getPrecoBase()+","+jogoE.getPlataforma()+","+jogoE.getCategoria().getNome()+","+jogoE.calculaPrecoFinal());
+			System.out.println("8:R$ "+media+","+jogoE.getNome()+","+jogoE.getAno()+",R$ "+jogoE.getPrecoBase()+","+jogoE.getPlataforma()+","+jogoE.getCategoria().getNome()+",R$ "+jogoE.calculaPrecoFinal());
 		}
 		if(jogoGuia instanceof JogoTabuleiro){
 			JogoTabuleiro jogoT = (JogoTabuleiro) jogoGuia;
-			System.out.println("8:"+media+","+jogoT.getNome()+","+jogoT.getAno()+","+jogoT.getPrecoBase()+","+jogoT.getNumeroPecas());
+			System.out.println("8:R$ "+media+","+jogoT.getNome()+","+jogoT.getAno()+",R$ "+jogoT.getPrecoBase()+","+jogoT.getNumeroPecas());
 		}
     }
 
 	public void apresentaJogoTabMaisAntigo(){
 		JogoTabuleiro jogoAntigo = ludoteca.jogoTabuleiroAntigo();
-		if(jogoAntigo == null) System.out.println("9:Nenhum jogo encontrado.");
-		System.out.println("9:"+jogoAntigo.getNome()+","+jogoAntigo.getAno());
+		if(ludoteca.jogoTabuleiroAntigo() == null){
+			System.out.println("9:Nenhum jogo encontrado.");
+		} else{
+			System.out.println("9:"+jogoAntigo.getNome()+","+jogoAntigo.getAno());
+		}
 	}
 }
 

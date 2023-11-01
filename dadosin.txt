@@ -1,11 +1,11 @@
-Resident Evil;2022;215.14;PS5;Acao
-God of War Ragnarok;2014;6000.1;PC;Simulacao
-digimon;2000;350;pc;acao
-Super Mario Odissey;2017;6000.89;Switch;Acao
+Civilization V;2014;188.98;PS4;Estrategia
+God of War Ragnarok;2022;215.14;PS5;Acao
+The Sims 4;2014;55.03;PC;Simulacao
+Super Mario Odissey;2017;289.89;Switch;Acao
 -1
-Jogo da Vida;2000;121.34;70
-Cara a cara;2000;700.56;32
+Jogo da Vida;1970;121.34;70
+Xadrez;-204;15700.56;32
 -1
-God of War ragnarok
-2000
-Terror
+Jogo da Vida
+2014
+Acao

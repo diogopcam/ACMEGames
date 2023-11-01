@@ -9,11 +9,9 @@ import java.util.Scanner;
 
 public class EntradaSaida {
     private Scanner entrada = null; 
-    //DEFINE A ENTRADA DE DADOS                // Atributo para entrada de dados (entrada)
-    private PrintStream saidaPadrao = System.out;   // Guarda a saida padrao - tela(console) (saida)
-    //SAIDA 
+    private PrintStream saidaPadrao = System.out;  
 
-    // Construtor
+
     public EntradaSaida() {
         try {
             BufferedReader streamEntrada = new BufferedReader(new FileReader("dadosin.txt"));
@@ -23,13 +21,10 @@ public class EntradaSaida {
         } catch (Exception e) {
             System.out.println(e);
         }
-        Locale.setDefault(Locale.ENGLISH);   // Ajusta para ponto decimal
+        Locale.setDefault(Locale.ENGLISH);
         entrada.useLocale(Locale.ENGLISH);
-
-        // Implemente aqui o seu codigo adicional do construtor
     }
 
-    // Restaura E/S padrao de tela(console)/teclado
     private void restauraES() {
         System.setOut(saidaPadrao);
         entrada = new Scanner(System.in);
@@ -38,6 +33,4 @@ public class EntradaSaida {
     public Scanner getEntrada() {
         return entrada;
     }
-
-    
 }
