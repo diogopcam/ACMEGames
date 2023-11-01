@@ -1,5 +1,5 @@
 # ACMEGames
-Trabalho avaliativo da disciplina de Porgramação Orientada a Objetos, ministrada pelo professor Marcelo H. Yamaguti.
+Trabalho avaliativo da disciplina de Programação Orientada a Objetos, ministrada pelo professor Marcelo H. Yamaguti.
 
 1. Enunciado geral:
 A ACMEGames comercializa jogos (eletrônicos e de tabuleiro) e deseja uma aplicação que
