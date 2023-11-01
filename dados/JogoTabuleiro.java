@@ -17,7 +17,11 @@ public class JogoTabuleiro extends Jogo {
 	}
 
 	public double calculaPrecoFinal(){
-		double valorFinal = getPrecoBase() + ((1.0/100.0)*getPrecoBase());
-		return valorFinal;
+		double valorFinal = getPrecoBase() + (((1.0/100.0)*getPrecoBase()) * numeroPecas);
+		return Double.parseDouble(String.format("%.2f", valorFinal));
+	}
+
+	public void jogoTabToString(){
+		System.out.println(getNome()+","+getAno()+","+getPrecoBase()+","+getNumeroPecas()+","+calculaPrecoFinal());
 	}
 }

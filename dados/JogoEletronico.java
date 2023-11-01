@@ -31,20 +31,18 @@ public class JogoEletronico extends Jogo{
 		switch(this.categoria){
 			case ACT:
 				valorFinal = getPrecoBase() + ((10.0/100.0)*getPrecoBase());
-				return valorFinal;
+				return Double.parseDouble(String.format("%.2f", valorFinal));
 			case SIM:
 				valorFinal = getPrecoBase() + ((30.0/100.0)*getPrecoBase());
-				return valorFinal;
+				return Double.parseDouble(String.format("%.2f", valorFinal));
 			case STR:
 				valorFinal = getPrecoBase() + ((70.0/100.0)*getPrecoBase());
-				return valorFinal;
+				return Double.parseDouble(String.format("%.2f", valorFinal));
 		}
-		return valorFinal;
+		return Double.parseDouble(String.format("%.2f", valorFinal));
 	}
 
 	public void jogoEletToString(){
-		jogoToString();
-		System.out.println("Plataforma: "+getPlataforma());
-		System.out.println("Plataforma: "+getCategoria());
+		System.out.println(getNome()+","+getAno()+","+getPrecoBase()+","+getPlataforma()+","+getCategoria().getNome()+","+calculaPrecoFinal());
 	}
 }

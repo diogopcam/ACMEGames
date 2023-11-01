@@ -1,45 +1,23 @@
 package dados;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Ludoteca implements Iterador {
 	private int contador;
-	private int tamanho;
 	private ArrayList<Jogo> listaJogos;
-	private ArrayList<JogoEletronico> listaJogosEletronicos;
-	private ArrayList<JogoTabuleiro> listaJogosTabuleiro;
 	private double precoFinalLudoteca;
+	private double totalPrecosBases;
 	
 	public Ludoteca(){
-		tamanho = 0;
 		contador = 0;
-		listaJogos = new ArrayList();
-		listaJogosEletronicos = new ArrayList();
-		listaJogosTabuleiro = new ArrayList();
-	}
-
-	public void jogosIniciaisLudoteca(){
-		JogoEletronico jogoum = new JogoEletronico("Resident Evil", 2004, 200, "Playstation", Categoria.ACT);
-		JogoEletronico jogodois = new JogoEletronico("God of War", 2000,350, "Playstation", Categoria.ACT);
-		JogoEletronico jogotres = new JogoEletronico("The Last of Us", 2000,70, "Playstation", Categoria.STR);
-		JogoTabuleiro jogoquatro = new JogoTabuleiro("Damas", 2002, 100000, 20); 
-		JogoTabuleiro jogocinco = new JogoTabuleiro("Domino", 2001, 130, 90);
-		JogoTabuleiro jogoseis = new JogoTabuleiro("Quebra cabeça", 1000,  50000, 80);
-		listaJogos.add(jogoum);
-		listaJogos.add(jogodois);
-		listaJogos.add(jogotres);
-		listaJogos.add(jogoquatro);
-		listaJogos.add(jogocinco);
-		listaJogos.add(jogoseis);
+		listaJogos = new ArrayList<Jogo>();
+		precoFinalLudoteca = 0;
+		totalPrecosBases = 0;
 	}
 
 	public boolean addJogo(Jogo jogo){
 		if(verificaJogo(jogo) == false){
-		    apresentaErro(jogo);
 			return false;
 		}
-		apresentaSucesso(jogo);
-		tamanho++;
 		return listaJogos.add(jogo);
 	}
 
@@ -55,139 +33,28 @@ public class Ludoteca implements Iterador {
 		return true;
 	}
 
-	public void apresentaErro(Jogo jogo){
-		if(jogo instanceof JogoEletronico){
-			String nome = jogo.getNome();
-			System.out.println("1:Erro-jogo com nome repetido:"+ nome);
-		}
-		if(jogo instanceof JogoTabuleiro){
-			String nome = jogo.getNome();
-			System.out.println("2:Erro-jogo com nome repetido:"+ nome);
-		}
-	}
-
-	public void apresentaSucesso(Jogo jogo){
-		if(jogo instanceof JogoEletronico){
-			String nome = jogo.getNome();
-			double preco = jogo.calculaPrecoFinal();
-			System.out.println("1:"+nome+ ","+preco);
-		}
-		if(jogo instanceof JogoTabuleiro){
-			String nome = jogo.getNome();
-			double preco = jogo.calculaPrecoFinal();
-			System.out.println("2:"+nome+ ","+preco);
-		}
-	}
-	
-	public void consultaPorNome(String nome){
+	public Jogo consultaPorNome(String nome){
 		reset();
-		boolean analise = false;
-		
 		while(hasNext() == true){
 			Jogo jogo = (Jogo) next();
-			
 			if(jogo.getNome().equalsIgnoreCase(nome)){
-				analise = true;
-				if(jogo instanceof JogoEletronico){
-					JogoEletronico jogoE = (JogoEletronico) jogo; 
-					System.out.println("3:"+jogoE.getNome()+","+jogoE.getAno()+","+jogoE.getPrecoBase()+","+jogoE.getPlataforma()+","+jogoE.getCategoria()+","+jogoE.calculaPrecoFinal());
-				} else if(jogo instanceof JogoTabuleiro){
-					JogoTabuleiro jogoT = (JogoTabuleiro) jogo;
-					System.out.println("3:"+jogoT.getNome()+","+jogoT.getAno()+","+jogoT.getPrecoBase()+","+jogoT.getNumeroPecas()+","+jogoT.calculaPrecoFinal());
-				}
+				return jogo;
 			}
 		}
-		if (!analise){
-			System.out.println("3:Nome inexistente");
-		}
+		return null;
 	}
 
-	public double somatorio(){
-		double valorTotal = 0;
-		reset();
-		while(hasNext() == true){
-			Jogo jogo = (Jogo) next();
-			valorTotal += jogo.calculaPrecoFinal();
+	public Categoria defineCategoria(String c){
+		if(c.equalsIgnoreCase("Acao")){
+			return Categoria.ACT;
 		}
-		return valorTotal;
-	}
-
-	public ArrayList<Jogo> consultaPorAno(int ano) {
-		ArrayList<Jogo> jogosDoAno = new ArrayList<>();
-		reset();
-		while(hasNext()==true){
-			Jogo jogo = (Jogo) next();
-			if(jogo.getAno() == ano){
-				jogosDoAno.add(jogo);
-			}
+		if(c.equalsIgnoreCase("Simulacao")){
+			return Categoria.SIM;
 		}
-		if(jogosDoAno.size() < 1) return null;
-		return jogosDoAno;
-	}
-
-    public void jogosDoAnoToString(int ano){
-		if(consultaPorAno(ano) == null){
-			System.out.println("4:Nenhum jogo encontrado");
-		} else{
-			for(Jogo jogo: consultaPorAno(ano)){
-				if(jogo instanceof JogoEletronico){
-					JogoEletronico jogoE = (JogoEletronico) jogo; 
-					System.out.println("4:"+jogoE.getNome()+","+jogoE.getAno()+","+jogoE.getPrecoBase()+","+jogoE.getPlataforma()+","+jogoE.getCategoria()+","+jogoE.calculaPrecoFinal());
-				} else if(jogo instanceof JogoTabuleiro){
-					JogoTabuleiro jogoT = (JogoTabuleiro) jogo;
-					System.out.println("4:"+jogoT.getNome()+","+jogoT.getAno()+","+jogoT.getPrecoBase()+","+jogoT.getNumeroPecas()+","+jogoT.calculaPrecoFinal());
-				}
-			}
+		if(c.equalsIgnoreCase("Estrategia")){
+			return Categoria.STR;
 		}
-	}
-	
-	public void preencheJogosEletronicos(){
-			reset();
-			while(hasNext() == true){
-				Jogo jogo = (Jogo) next();
-				if(jogo instanceof JogoEletronico){
-					JogoEletronico jogoE = (JogoEletronico) jogo;
-					listaJogosEletronicos.add(jogoE);
-				}
-			}
-	}
-
-	public void preencheJogosTabuleiro(){
-			reset();
-			while(hasNext() == true){
-				Jogo jogo = (Jogo) next();
-				if(jogo instanceof JogoTabuleiro){
-					JogoTabuleiro jogoT = (JogoTabuleiro) jogo;
-					listaJogosTabuleiro.add(jogoT);
-				}
-			}
-	}
-
-	public void consultaJogosCat(String c){
-		String nomeAct = Categoria.ACT.getNome();
-		String nomeStr = Categoria.STR.getNome();
-		String nomeSim = Categoria.SIM.getNome();
-
-		if((!c.equalsIgnoreCase(nomeAct) && !c.equalsIgnoreCase(nomeStr)) && !c.equalsIgnoreCase(nomeSim)){
-			System.out.println("5:Categoria inexistente");
-			return;		
-	    } else{
-			apresentaJogosCategoria(c);
-		}
-
-	}
-	
-	public void apresentaJogosCategoria(String c){
-		boolean categoriaVer = false;
-		for(JogoEletronico jogo: listaJogosEletronicos){
-			if(jogo.getCategoria().getNome().equalsIgnoreCase(c)){
-				System.out.println("5:"+jogo.getNome()+","+jogo.getAno()+","+jogo.getPrecoBase()+","+jogo.getPlataforma()+","+jogo.getCategoria()+","+jogo.calculaPrecoFinal());
-				categoriaVer = true;
-			} 
-		}
-		if(!categoriaVer){
-			System.out.println("5:Não existe jogo com essa categoria");
-		}
+		return null;
 	}
 
 	public void reset() {
@@ -207,42 +74,90 @@ public class Ludoteca implements Iterador {
 		return null;
 	}
 
-	public int getTamanho() {
-		return tamanho;
+	public void setPrecoFinal(double preco){
+		precoFinalLudoteca = preco;
 	}
 
-	public void mostraSomatorio(){
-		double somatorio = 0;
-		if(listaJogos.size()<1){
-			System.out.println("6:Nenhum jogo encontrado.");
-		} else{
-			for (Jogo jogo : listaJogos) {
-				double valorJogo = jogo.calculaPrecoFinal();
-				somatorio += valorJogo;
-			}
-			System.out.println("6:" + somatorio);
+	public ArrayList<Jogo> getListaJogos(){
+		ArrayList<Jogo> cloneLista = (ArrayList<Jogo>) listaJogos.clone();
+		return cloneLista;
+	}
+
+	public double valorTotalPrecosBases(){
+		if(listaJogos.size()<1) return 0;
+		double valorTotalPrecos = 0;
+		reset();
+		while(hasNext() == true){
+			Jogo jogo = (Jogo) next();
+			valorTotalPrecos += jogo.getPrecoBase();
 		}
+		totalPrecosBases = valorTotalPrecos;
+		return Double.parseDouble(String.format("%.2f", totalPrecosBases));
 	}
 
-	public void maiorPrecoFinal(){
-		JogoTabuleiro jogoMaisCaro = null;
-        double maior = 0;
-        
-        for (JogoTabuleiro jogoT : listaJogosTabuleiro) {
-            double precoFinal = jogoT.calculaPrecoFinal();
-            if (precoFinal > maior) {
-                maior = precoFinal; 
-                jogoMaisCaro = jogoT; 
-            }
-        } 
+	public double defineMedia(){
+		double media = valorTotalPrecosBases()/listaJogos.size();
+		return Double.parseDouble(String.format("%.2f", media));
+	}
 
-        if (jogoMaisCaro != null) {
-            System.out.println("7:" + jogoMaisCaro.getNome() + "," + jogoMaisCaro.calculaPrecoFinal());
-        } else {
-            System.out.println("7:Nenhum jogo encontrado.");
-        }
-    }
+	public Jogo jogoProximoMedia(double media) {		
+			if(listaJogos.size() < 1) return null;
+			
+			reset();
+			Jogo jogoMaisProximo = null;
+			double diferenca = 99999999;
+			double apoio = 0;
+			while(hasNext() == true){
+				Jogo jogo = (Jogo) next();
+				if(media > jogo.getPrecoBase()){
+					apoio = media - jogo.getPrecoBase();
+				}
+				
+				if(media < jogo.getPrecoBase()){
+					apoio = jogo.getPrecoBase() - media;
+				}
+				
+				if(apoio < diferenca){
+					diferenca = apoio;
+					jogoMaisProximo = jogo;
+				}
+				}
+				return jogoMaisProximo;
+		}
+
+		public JogoTabuleiro jogoTabuleiroAntigo(){
+			if(listaJogos.size() < 1) return null;
+			reset();
+			int anoAntigo = 9999;
+			JogoTabuleiro jogoMaisAntigo = null;
+			while(hasNext() == true){
+				Jogo jogoApoio = (Jogo) next();
+				if(jogoApoio instanceof JogoTabuleiro){
+					JogoTabuleiro jogoT = (JogoTabuleiro) jogoApoio;
+					int anoTab = jogoApoio.getAno();
+					if(anoTab < anoAntigo){
+						anoAntigo = anoTab;
+						jogoMaisAntigo = jogoT;
+					}
+				}
+			}
+			return jogoMaisAntigo;
+	}
+
+	public ArrayList<Jogo> consultaPorAno(int ano) {
+		ArrayList<Jogo> jogosDoAno = new ArrayList<>();
+		reset();
+		while(hasNext()==true){
+			Jogo jogo = (Jogo) next();
+			if(jogo.getAno() == ano){
+				jogosDoAno.add(jogo);
+			}
+		}
+		if(jogosDoAno.size() < 1) return null;
+		return jogosDoAno;
+	}
 }
+
 
 
 
