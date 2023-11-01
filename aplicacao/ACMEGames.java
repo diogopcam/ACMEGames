@@ -1,6 +1,5 @@
 package aplicacao;
 import java.util.ArrayList;
-
 import dados.Categoria;
 import dados.Jogo;
 import dados.JogoEletronico;
@@ -135,24 +134,12 @@ public class ACMEGames {
 		return valorTotal;
 	}
 
-	public ArrayList<Jogo> consultaPorAno(int ano) {
-		ArrayList<Jogo> jogosDoAno = new ArrayList<>();
-		ludoteca.reset();
-		while(ludoteca.hasNext()==true){
-			Jogo jogo = (Jogo) ludoteca.next();
-			if(jogo.getAno() == ano){
-				jogosDoAno.add(jogo);
-			}
-		}
-		if(jogosDoAno.size() < 1) return null;
-		return jogosDoAno;
-	}
 
     public void jogosDoAnoToString(int ano){
-		if(consultaPorAno(ano) == null){
+		if(ludoteca.consultaPorAno(ano) == null){
 			System.out.println("4:Nenhum jogo encontrado.");
 		} else{
-			for(Jogo jogo: consultaPorAno(ano)){
+			for(Jogo jogo: ludoteca.consultaPorAno(ano)){
 				if(jogo instanceof JogoEletronico){
 					JogoEletronico jogoE = (JogoEletronico) jogo; 
 					System.out.println("4:"+jogoE.getNome()+","+jogoE.getAno()+",R$ "+jogoE.getPrecoBase()+","+jogoE.getPlataforma()+","+jogoE.getCategoria().getNome()+",R$ "+jogoE.calculaPrecoFinal());

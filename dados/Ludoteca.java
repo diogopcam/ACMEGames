@@ -1,9 +1,5 @@
 package dados;
 import java.util.ArrayList;
-import java.util.Iterator;
-import aplicacao.ACMEGames;
-import java.text.DecimalFormat;
-import java.time.chrono.JapaneseChronology; 
 
 public class Ludoteca implements Iterador {
 	private int contador;
@@ -146,6 +142,19 @@ public class Ludoteca implements Iterador {
 				}
 			}
 			return jogoMaisAntigo;
+	}
+
+	public ArrayList<Jogo> consultaPorAno(int ano) {
+		ArrayList<Jogo> jogosDoAno = new ArrayList<>();
+		reset();
+		while(hasNext()==true){
+			Jogo jogo = (Jogo) next();
+			if(jogo.getAno() == ano){
+				jogosDoAno.add(jogo);
+			}
+		}
+		if(jogosDoAno.size() < 1) return null;
+		return jogosDoAno;
 	}
 }
 

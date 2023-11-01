@@ -8,9 +8,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class EntradaSaida {
-    private Scanner entrada = null; 
-    private PrintStream saidaPadrao = System.out;  
-
+    private Scanner entrada = null;  
 
     public EntradaSaida() {
         try {
@@ -23,11 +21,6 @@ public class EntradaSaida {
         }
         Locale.setDefault(Locale.ENGLISH);
         entrada.useLocale(Locale.ENGLISH);
-    }
-
-    private void restauraES() {
-        System.setOut(saidaPadrao);
-        entrada = new Scanner(System.in);
     }
 
     public Scanner getEntrada() {
